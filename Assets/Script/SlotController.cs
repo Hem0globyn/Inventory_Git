@@ -179,6 +179,7 @@ public class SlotController : MonoBehaviour
 
     public void AllReset()
     {
+        if(parent == null) return;
         foreach (Transform child in parent)
         {
             SlotController slot = child.GetComponent<SlotController>();
@@ -190,7 +191,10 @@ public class SlotController : MonoBehaviour
             slot.backGround.color = defaultColor; //기본 색상으로 초기화
             slot.count.text = ""; //카운트 텍스트 초기화
         }
-        equipButton.onClick.RemoveAllListeners(); //모든 버튼 리스너 제거
-        useButton.onClick.RemoveAllListeners(); //모든 버튼 리스너 제거
+        if (equipButton != null)
+            equipButton.onClick.RemoveAllListeners();
+
+        if (useButton != null)
+            useButton.onClick.RemoveAllListeners();
     }
 }
