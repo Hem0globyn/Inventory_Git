@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4bcc0fea9f39af4f933fc04964f25ad, type: 3}
-  m_Name: NewData
+  m_Name: BowData
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemIcon: {fileID: 0}
+  itemName: Bow
+  itemDescription: It just a normal bow
+  itemIcon: {fileID: 21300000, guid: e0571d5b8b8a30349bab0a062ec1ad73, type: 3}
   itemType: 0
-  itemValue: 0
-  itemCount: 0
+  itemValue: 10

@@ -15,4 +15,4 @@ MonoBehaviour:
   attack: 75
   defense: 5
   healthPoint: 100
-  critical: 33
+  critical: 0.33

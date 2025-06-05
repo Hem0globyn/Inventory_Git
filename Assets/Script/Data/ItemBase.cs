@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum ItemType
 {
-    Weapon,
-    Armor,
+    Equipable,
     Consumable,
-    QuestItem,
     Miscellaneous
 }
 
