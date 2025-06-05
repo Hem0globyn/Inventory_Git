@@ -8,6 +8,7 @@ public class CharacterChanger : MonoBehaviour
 {
     public GameObject elf;
     public GameObject knight;
+    public GameObject inventory;
 
     public CharacterStatus elfStat;
     public CharacterStatus knightStat;
@@ -17,6 +18,8 @@ public class CharacterChanger : MonoBehaviour
     [SerializeField] TextMeshProUGUI hp;
     [SerializeField] TextMeshProUGUI crit;
 
+
+   
     private void Start()
     {
         OnKnightStat();
@@ -31,6 +34,7 @@ public class CharacterChanger : MonoBehaviour
         defense.text = elfStat.defense.ToString();
         hp.text = elfStat.healthPoint.ToString();
         crit.text = (elfStat.critical*100).ToString();
+        TextManager.Instance.SetBaseText();
     }
     public void OnKnightStat()
     {
@@ -41,6 +45,7 @@ public class CharacterChanger : MonoBehaviour
         defense.text = knightStat.defense.ToString();
         hp.text = knightStat.healthPoint.ToString();
         crit.text = (knightStat.critical * 100).ToString();
+        TextManager.Instance.SetBaseText();
     }
 
     //스텟이 필요하다면 여기서 stat 클래스를 할당해 전해줄 것 (현재는 텍스트만 필요하므로 보류)

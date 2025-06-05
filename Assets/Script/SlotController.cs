@@ -8,13 +8,20 @@ public class SlotController : MonoBehaviour
     public Image backGround;
     public ItemBase itemBase;
     public TextMeshProUGUI count;
-    public GameObject EquipBtn;
-    public GameObject UseBtn;
+    public TextMeshProUGUI equipBtnText;
+    public GameObject equipBtn;
+    public GameObject useBtn;
     public CharacterChanger statChanger;
+    public Button equipButton;
+    public Button useButton;
 
-
+    public bool isEquiped = false;
     public bool selected;
+
+
+
     public Color defaultColor;
+
     Transform parent;
 
 
@@ -60,10 +67,11 @@ public class SlotController : MonoBehaviour
         ResetSelect();  //전체 초기화
         selected = true;
         Selected(); //선택된 슬롯 색상 초기화
+        LinkButton(); //버튼 연결
     }
 
 
-    private void ResetSelect()
+    public void ResetSelect()
     {
         foreach (Transform child in parent)
         {
@@ -85,18 +93,18 @@ public class SlotController : MonoBehaviour
             backGround.color = new Color(27 / 255f, 1f, 0f, 1f);
             if (itemBase.itemType == ItemType.Equipable)
             {
-                EquipBtn.SetActive(true);
-                UseBtn.SetActive(false);
+                equipBtn.SetActive(true);
+                useBtn.SetActive(false);
             }
             else if (itemBase.itemType == ItemType.Consumable)
             {
-                EquipBtn.SetActive(false);
-                UseBtn.SetActive(true);
+                equipBtn.SetActive(false);
+                useBtn.SetActive(true);
             }
             else
             {
-                EquipBtn.SetActive(false);
-                UseBtn.SetActive(false);
+                equipBtn.SetActive(false);
+                useBtn.SetActive(false);
             }
         }
         else
@@ -105,12 +113,50 @@ public class SlotController : MonoBehaviour
         }
     }
 
+    private void LinkButton()
+    {
+        if(equipBtn.activeSelf) //equip 버튼이 활성화되어 있다면
+        {
+            equipButton.onClick.RemoveAllListeners(); //기존에 등록된 리스너 제거
+            equipButton.onClick.AddListener(OnClickEquipBtn); //equip 버튼 클릭시 OnClickEquipBtn 메소드 호출
+        }
+        else if(useBtn.activeSelf)  //use 버튼이 활성화되어 있다면
+        {
+            useButton.onClick.RemoveAllListeners(); //기존에 등록된 리스너 제거
+            useButton.onClick.AddListener(OnClickUseBtn); //use 버튼 클릭시 OnClickUseBtn 메소드 호출
+        }
+    }
+
 
     public void OnClickEquipBtn()
     {
         if (itemBase is EquipableItem equip)
         {
-            //스텟 텍스트에 넘겨주기
+            if (isEquiped) //이미 장착되어 있다면
+            {
+
+                
+                isEquiped = false;
+                StatHandler.Instance.equipAtkStat -= equip.attack; //공격력 감소
+
+                if(StatHandler.Instance.equipAtkStat <= 0) //공격력이 0보다 작아지면
+                {
+                    TextManager.Instance.ResetStat(); //장착 해제시 공격력 감소
+                }
+                else
+                    TextManager.Instance.AddAttack(StatHandler.Instance.equipAtkStat);
+
+
+
+                count.text = "";
+            }
+            else if (!isEquiped) //장착 안했으면
+            { 
+                StatHandler.Instance.equipAtkStat += equip.attack; //공격력 증가
+                TextManager.Instance.AddAttack(StatHandler.Instance.equipAtkStat); //텍스트 매니저에 공격력 추가
+                count.text = "E";
+                isEquiped = true;
+            }
         }
     }
 
@@ -118,11 +164,33 @@ public class SlotController : MonoBehaviour
     {
         if (itemBase is ConsumableItem consumable)
         {
-             //consumable.xpGain; // 소비 아이템 사용 로직
+            StatHandler.Instance.expBar.AddExp(consumable.xpGain);
+            itemCount--;
+            count.text = itemCount.ToString();
+            if (itemCount <= 0)
+            {
+                itemBase = null; //아이템이 없으면 null로 설정
+                icon.sprite = null; //아이콘도 비움
+                count.text = ""; //카운트 텍스트도 비움
+            }
         }
-        else
+    }
+
+
+    public void AllReset()
+    {
+        foreach (Transform child in parent)
         {
-            Debug.LogWarning("이 아이템은 사용할 수 없습니다.");
+            SlotController slot = child.GetComponent<SlotController>();
+            if (slot == null) continue;
+
+            slot.isEquiped = false; //장착 상태 초기화
+            StatHandler.Instance.equipAtkStat = 0; //장착 공격력 초기화
+            slot.selected = false;
+            slot.backGround.color = defaultColor; //기본 색상으로 초기화
+            slot.count.text = ""; //카운트 텍스트 초기화
         }
+        equipButton.onClick.RemoveAllListeners(); //모든 버튼 리스너 제거
+        useButton.onClick.RemoveAllListeners(); //모든 버튼 리스너 제거
     }
 }

@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         characterChanger.OnKnightStat();
+
+        statusCanvas.SetActive(false);
+        invenCanvas.SetActive(false);
     }
 
     public void OnclickedStatusBtn()
