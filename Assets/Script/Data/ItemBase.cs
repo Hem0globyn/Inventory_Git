@@ -26,6 +26,4 @@ public class ItemBase : ScriptableObject
     public ItemType itemType;
     [Header("Item Value")]
     public int itemValue;
-    [Header("ItemCount")]
-    public int itemCount;
 }
