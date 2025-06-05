@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 19238986}
   - component: {fileID: 19238985}
   - component: {fileID: 19238984}
+  - component: {fileID: 19238987}
   m_Layer: 5
   m_Name: EquipBtn
   m_TagString: Untagged
@@ -400,6 +401,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19238982}
   m_CullTransparentMesh: 1
+--- !u!114 &19238987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19238982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe9f9de463fb2e4e932b04a7b3317ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &37769303
 GameObject:
   m_ObjectHideFlags: 0
@@ -5703,7 +5716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1626766689}
   backGround: {fileID: 0}
-  itemBase: {fileID: 11400000, guid: 2f8fb351faf0ad843986684dc9b16b7e, type: 2}
+  itemBase: {fileID: 11400000, guid: 9850e74178504aa4a9f8a6c71ae2a188, type: 2}
   count: {fileID: 0}
   EquipBtn: {fileID: 19238982}
   UseBtn: {fileID: 1726062741}
@@ -7152,7 +7165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 1108744253}
   backGround: {fileID: 0}
-  itemBase: {fileID: 11400000, guid: f573fedbbeacbe04a8fc16831e265586, type: 2}
+  itemBase: {fileID: 11400000, guid: d5f605795c2536543867328dfce0f78b, type: 2}
   count: {fileID: 0}
   EquipBtn: {fileID: 19238982}
   UseBtn: {fileID: 1726062741}
@@ -7581,6 +7594,7 @@ GameObject:
   - component: {fileID: 1726062745}
   - component: {fileID: 1726062744}
   - component: {fileID: 1726062743}
+  - component: {fileID: 1726062746}
   m_Layer: 5
   m_Name: UseBtn
   m_TagString: Untagged
@@ -7690,6 +7704,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726062741}
   m_CullTransparentMesh: 1
+--- !u!114 &1726062746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726062741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe9f9de463fb2e4e932b04a7b3317ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1751221161
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,7 +8252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 370831221}
   backGround: {fileID: 0}
-  itemBase: {fileID: 11400000, guid: bdb0156a738a7ba4caa9b9ba8243708b, type: 2}
+  itemBase: {fileID: 11400000, guid: 1079a415f1c09724bb1d90b0714dcc00, type: 2}
   count: {fileID: 0}
   EquipBtn: {fileID: 19238982}
   UseBtn: {fileID: 1726062741}

@@ -10,6 +10,8 @@ public class SlotController : MonoBehaviour
     public TextMeshProUGUI count;
     public GameObject EquipBtn;
     public GameObject UseBtn;
+    public CharacterChanger statChanger;
+
 
     public bool selected;
     public Color defaultColor;
@@ -100,6 +102,27 @@ public class SlotController : MonoBehaviour
         else
         {
             return;
+        }
+    }
+
+
+    public void OnClickEquipBtn()
+    {
+        if (itemBase is EquipableItem equip)
+        {
+            //스텟 텍스트에 넘겨주기
+        }
+    }
+
+    public void OnClickUseBtn()
+    {
+        if (itemBase is ConsumableItem consumable)
+        {
+             //consumable.xpGain; // 소비 아이템 사용 로직
+        }
+        else
+        {
+            Debug.LogWarning("이 아이템은 사용할 수 없습니다.");
         }
     }
 }
