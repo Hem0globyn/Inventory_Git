@@ -1,22 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AddItem : MonoBehaviour
 {
     //트랜스폼 가져와서 foreach 쓸 준비
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField]Transform slotGrid;
+    [SerializeField]ItemBase xpHeart;
+    SlotController slotController;
     public void OnClickAddButton()
     {
         //버튼 클릭시 
@@ -34,7 +25,26 @@ public class AddItem : MonoBehaviour
         //   /GreatSword");
         //   this.itemBase = greatSword;
         // 이렇게 데이터 받아올 수 있음
-  }
+
+        foreach(Transform slotData in slotGrid)
+        {
+            slotController = slotData.GetComponent<SlotController>();
+            if(slotController.itemBase == null) //슬롯에 아이템이 없다면
+            {
+                //아이템 데이터 넣어주고
+                slotController.itemBase = xpHeart;
+                slotController.itemCount = 1;
+                slotController.ResetSlot(); //슬롯 초기화
+                return; //빈 슬롯에 넣었으니 종료
+            }
+            if(slotController.itemBase.itemType == ItemType.Consumable && slotController.itemCount < 5) //소모품이고 개수가 5개 미만이라면
+            {
+                slotController.itemCount++; //개수 올려주고
+                slotController.Counter(); //카운터 갱신
+                return; //개수 올렸으니 종료
+            }
+        }
+    }
 
 
 

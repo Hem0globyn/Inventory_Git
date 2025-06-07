@@ -59,6 +59,8 @@ public class TextManager : MonoSingleton<TextManager>
     }
 
 
+
+
     public void ResetStat(StatType type)
     {
         if(type == StatType.Attack)

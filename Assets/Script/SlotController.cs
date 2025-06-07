@@ -47,20 +47,19 @@ public class SlotController : MonoBehaviour
 
     public void Counter()
     {
-        if (itemCount >= 1)
+        if (itemCount > 0)
         {
             count.text = itemCount.ToString();
         }
         else
         {
             count.text = "";
-        }
-
-        if (itemCount >= 0)
-        {
-            this.itemBase = null;
+            itemBase = null;
+            icon.sprite = null;
         }
     }
+
+    
 
     public void ResetSlot()
     {
@@ -85,11 +84,7 @@ public class SlotController : MonoBehaviour
         }
     }
 
-    public void RenewInv()
-    {
-
-    }
-
+    
 
     private void Selected()
     {
