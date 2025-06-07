@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AddItem : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //트랜스폼 가져와서 foreach 쓸 준비
+    
     void Start()
     {
         
@@ -15,4 +16,30 @@ public class AddItem : MonoBehaviour
     {
         
     }
+
+    public void OnClickAddButton()
+    {
+        //버튼 클릭시 
+        //foreach문으로 순회하면서 빈자리 찾기(itembase ==null)
+        //널인데다가 데이터 넣어주고 슬롯 컨트롤러에서 갱신
+        //카운트 올려주고 5개 되면 fullstack bool값 반환해서 다른 슬롯 찾게    
+        //로직 분리해서 어이템 추가 / 개수추가 따로 하기?x
+        //순회하면서 조건을 더걸기
+        //usable && !isfullstack
+        //이거 인터페이스로 만들어서 확장성 넓히기 가능
+        //확장할때 어이템 정보 칸 넣어주고 그거랑 비교할 수 있게 설계
+        //아이템 정보 
+        //EquipableItem greatSword =     
+        //   Resources.Load<EquipableItem>("Items
+        //   /GreatSword");
+        //   this.itemBase = greatSword;
+        // 이렇게 데이터 받아올 수 있음
+  }
+
+
+
+
+
+
+
 }
