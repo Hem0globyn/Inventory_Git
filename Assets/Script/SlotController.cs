@@ -15,7 +15,7 @@ public class SlotController : MonoBehaviour
     public Button equipButton;
     public Button useButton;
 
-    public bool isEquiped = false;
+    public bool isEquiped;
     public bool selected;
 
 
@@ -64,6 +64,8 @@ public class SlotController : MonoBehaviour
 
     public void ResetSlot()
     {
+        if (itemBase == null) return; //아이템이 없으면 초기화 안함
+        icon.sprite = itemBase.itemIcon; //아이콘 설정
         ResetSelect();  //전체 초기화
         selected = true;
         Selected(); //선택된 슬롯 색상 초기화
@@ -83,7 +85,10 @@ public class SlotController : MonoBehaviour
         }
     }
 
+    public void RenewInv()
+    {
 
+    }
 
 
     private void Selected()
@@ -134,17 +139,22 @@ public class SlotController : MonoBehaviour
         {
             if (isEquiped) //이미 장착되어 있다면
             {
-
-                
                 isEquiped = false;
                 StatHandler.Instance.equipAtkStat -= equip.attack; //공격력 감소
 
                 if(StatHandler.Instance.equipAtkStat <= 0) //공격력이 0보다 작아지면
                 {
-                    TextManager.Instance.ResetStat(); //장착 해제시 공격력 감소
+                    TextManager.Instance.ResetStat(TextManager.StatType.Attack); //장착 해제시 공격력 감소
                 }
                 else
                     TextManager.Instance.AddAttack(StatHandler.Instance.equipAtkStat);
+
+                if(StatHandler.Instance.equipCritStat <= 0) //크리티컬 확률이 0보다 작아지면
+                {
+                    TextManager.Instance.ResetStat(TextManager.StatType.Critical); //장착 해제시 크리티컬 확률 감소
+                }
+                else
+                    TextManager.Instance.AddCrit(StatHandler.Instance.equipCritStat);
 
 
 
@@ -153,7 +163,9 @@ public class SlotController : MonoBehaviour
             else if (!isEquiped) //장착 안했으면
             { 
                 StatHandler.Instance.equipAtkStat += equip.attack; //공격력 증가
+                StatHandler.Instance.equipCritStat += equip.crit*100; //크리티컬 확률 증가
                 TextManager.Instance.AddAttack(StatHandler.Instance.equipAtkStat); //텍스트 매니저에 공격력 추가
+                TextManager.Instance.AddCrit(StatHandler.Instance.equipCritStat); //크리티컬 확률 추가
                 count.text = "E";
                 isEquiped = true;
             }

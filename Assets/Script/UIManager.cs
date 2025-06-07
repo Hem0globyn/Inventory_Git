@@ -12,10 +12,9 @@ public class UIManager : MonoBehaviour
     public GameObject invenCanvas;
     public CharacterChanger characterChanger;
 
-    private void Awake()
+    private void Start()
     {
         characterChanger.OnKnightStat();
-
         statusCanvas.SetActive(false);
         invenCanvas.SetActive(false);
     }

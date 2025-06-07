@@ -8,6 +8,7 @@ public class EquipableItem : ItemBase
 {
     public int attack;
     public int defense;
+    public float crit;
     private void OnEnable()
     {
         itemType = ItemType.Equipable;

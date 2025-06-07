@@ -19,3 +19,4 @@ MonoBehaviour:
   itemValue: 0
   attack: 30
   defense: 0
+  crit: 0.2
