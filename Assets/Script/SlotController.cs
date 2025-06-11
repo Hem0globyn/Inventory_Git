@@ -136,8 +136,9 @@ public class SlotController : MonoBehaviour
             {
                 isEquiped = false;
                 StatHandler.Instance.equipAtkStat -= equip.attack; //공격력 감소
+                StatHandler.Instance.equipCritStat -= equip.crit * 100; //크리티컬 확률 감소
 
-                if(StatHandler.Instance.equipAtkStat <= 0) //공격력이 0보다 작아지면
+                if (StatHandler.Instance.equipAtkStat <= 0) //공격력이 0보다 작아지면
                 {
                     TextManager.Instance.ResetStat(TextManager.StatType.Attack); //장착 해제시 공격력 감소
                 }
@@ -194,6 +195,7 @@ public class SlotController : MonoBehaviour
 
             slot.isEquiped = false; //장착 상태 초기화
             StatHandler.Instance.equipAtkStat = 0; //장착 공격력 초기화
+            StatHandler.Instance.equipCritStat = 0; //장착 크리티컬 확률 초기화
             slot.selected = false;
             slot.backGround.color = defaultColor; //기본 색상으로 초기화
             slot.count.text = ""; //카운트 텍스트 초기화
